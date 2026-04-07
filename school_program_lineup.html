@@ -1,0 +1,93 @@
+
+<style>
+  .prog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; padding: 1rem 0; }
+  .prog-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.1rem; cursor: pointer; transition: border-color 0.15s; }
+  .prog-card:hover { border-color: var(--color-border-secondary); }
+  .cat-badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 999px; margin-bottom: 8px; }
+  .cat-field  { background: #E1F5EE; color: #085041; }
+  .cat-visit  { background: #E6F1FB; color: #0C447C; }
+  .cat-school { background: #FAEEDA; color: #633806; }
+  .cat-hybrid { background: #EEEDFE; color: #3C3489; }
+  .prog-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 5px; }
+  .prog-desc  { font-size: 12px; color: var(--color-text-secondary); margin: 0 0 8px; line-height: 1.55; }
+  .prog-meta  { display: flex; gap: 8px; flex-wrap: wrap; }
+  .meta-tag   { font-size: 11px; color: var(--color-text-secondary); background: var(--color-background-secondary); padding: 2px 7px; border-radius: 4px; }
+  .section-label { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); letter-spacing: 0.04em; text-transform: uppercase; margin: 1.5rem 0 6px; }
+  .note-box { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px; font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-top: 1.2rem; }
+</style>
+
+<p class="section-label">フィールドアドベンチャー系（他社施設借用）</p>
+<div class="prog-grid">
+  <div class="prog-card" onclick="sendPrompt('ハイエレメント付きプログラムの詳細な構成を教えてください')">
+    <span class="cat-badge cat-field">施設借用</span>
+    <p class="prog-title">ハイエレメント チャレンジデイ</p>
+    <p class="prog-desc">ロープス・コースやクライミングウォールで「挑戦と達成」を体感。個人の壁を越える体験を通してクラス全体の共感・応援文化を育む。</p>
+    <div class="prog-meta"><span class="meta-tag">半日〜1日</span><span class="meta-tag">中〜高校生</span><span class="meta-tag">宿泊なし可</span></div>
+  </div>
+  <div class="prog-card" onclick="sendPrompt('リバーカヤック系プログラムの詳細を教えてください')">
+    <span class="cat-badge cat-field">施設借用</span>
+    <p class="prog-title">リバー探検 × チームナビ</p>
+    <p class="prog-desc">カヤック・カヌーなど水辺アクティビティを組み合わせ、役割分担と協力を体感。自然環境への気づきも織り交ぜられる。</p>
+    <div class="prog-meta"><span class="meta-tag">1日</span><span class="meta-tag">小〜高校生</span><span class="meta-tag">季節限定</span></div>
+  </div>
+</div>
+
+<p class="section-label">出張・学校指定場所プログラム</p>
+<div class="prog-grid">
+  <div class="prog-card" onclick="sendPrompt('スラックラインチームビルディングの具体的なアクティビティを教えてください')">
+    <span class="cat-badge cat-school">学校出張</span>
+    <p class="prog-title">スラックライン × チームビルディング</p>
+    <p class="prog-desc">バランス感覚と仲間のサポートが交わる体験型プログラム。「支え合い」を体で覚える。体育館・校庭で実施可。</p>
+    <div class="prog-meta"><span class="meta-tag">2〜3時間</span><span class="meta-tag">全学年対応</span><span class="meta-tag">道具持参</span></div>
+  </div>
+  <div class="prog-card" onclick="sendPrompt('謎解きチームビルディングのシナリオ例を教えてください')">
+    <span class="cat-badge cat-school">学校出張</span>
+    <p class="prog-title">謎解き × チームビルディング</p>
+    <p class="prog-desc">物語型の謎解きミッションでチームの役割・コミュニケーション力を引き出す。教室・体育館・校内全体など場所を選ばない。</p>
+    <div class="prog-meta"><span class="meta-tag">2〜4時間</span><span class="meta-tag">中〜高校生</span><span class="meta-tag">雨天OK</span></div>
+  </div>
+  <div class="prog-card" onclick="sendPrompt('ピア・サポート教育プログラムの詳細を教えてください')">
+    <span class="cat-badge cat-school">学校出張</span>
+    <p class="prog-title">ピア・サポート体験プログラム</p>
+    <p class="prog-desc">いじめ予防・相互理解を目的とした体験的SEL活動。学活・道徳の時間に組み込める構成で、担任の負担を最小化。</p>
+    <div class="prog-meta"><span class="meta-tag">50〜90分</span><span class="meta-tag">小〜高校生</span><span class="meta-tag">道徳連携</span></div>
+  </div>
+  <div class="prog-card" onclick="sendPrompt('新入生歓迎チームビルディングの具体的なプログラムを教えてください')">
+    <span class="cat-badge cat-school">学校出張</span>
+    <p class="prog-title">新入生オリエンテーション TB</p>
+    <p class="prog-desc">入学直後の4〜5月に実施。「知らない人」同士が安全に繋がれる構造化アクティビティで、クラス序盤の関係づくりを加速。</p>
+    <div class="prog-meta"><span class="meta-tag">半日</span><span class="meta-tag">新1年生</span><span class="meta-tag">春季需要高</span></div>
+  </div>
+</div>
+
+<p class="section-label">ハイブリッド・発展型プログラム</p>
+<div class="prog-grid">
+  <div class="prog-card" onclick="sendPrompt('自然体験×探究学習プログラムの詳細を教えてください')">
+    <span class="cat-badge cat-hybrid">探究連携</span>
+    <p class="prog-title">フィールド探究 × チーム課題解決</p>
+    <p class="prog-desc">総合的な学習の時間と連携。自然観察・フィールドワークをグループで行い、「問い→調査→発表」のサイクルを体験的に学ぶ。</p>
+    <div class="prog-meta"><span class="meta-tag">半日〜1日</span><span class="meta-tag">中学生</span><span class="meta-tag">総合連携</span></div>
+  </div>
+  <div class="prog-card" onclick="sendPrompt('修学旅行前のチームビルディング事前プログラムを教えてください')">
+    <span class="cat-badge cat-hybrid">行事連携</span>
+    <p class="prog-title">修学旅行・林間前 プレTB</p>
+    <p class="prog-desc">行事の2〜4週前に実施し、グループの関係性を整えてから本番へ。行事の質・満足度が上がるとして担任からの評判が高い。</p>
+    <div class="prog-meta"><span class="meta-tag">2〜3時間</span><span class="meta-tag">全学年</span><span class="meta-tag">行事前需要</span></div>
+  </div>
+  <div class="prog-card" onclick="sendPrompt('教員向けファシリテーション研修プログラムを教えてください')">
+    <span class="cat-badge cat-hybrid">教員向け</span>
+    <p class="prog-title">教員ファシリテーション研修</p>
+    <p class="prog-desc">先生自身がTBを体験し、日常授業への応用を学ぶ。学校単位での内製化を支援し、長期的な関係構築につながる。</p>
+    <div class="prog-meta"><span class="meta-tag">半日</span><span class="meta-tag">教職員対象</span><span class="meta-tag">長期関係</span></div>
+  </div>
+  <div class="prog-card" onclick="sendPrompt('スポーツ運動会型チームビルディングの詳細を教えてください')">
+    <span class="cat-badge cat-visit">イベント型</span>
+    <p class="prog-title">ニュースポーツ × 運動会TB</p>
+    <p class="prog-desc">ボッチャ・キンボールなど誰でも参加できるニュースポーツで、体力差・運動の得意不得意を超えた参加体験をデザイン。</p>
+    <div class="prog-meta"><span class="meta-tag">2〜4時間</span><span class="meta-tag">全学年</span><span class="meta-tag">特別活動連携</span></div>
+  </div>
+</div>
+
+<div class="note-box">
+  💡 <strong>教員・学校ニーズへの寄り添いポイント：</strong>学習指導要領（特別活動・総合・道徳）との接続、実施コスト・移動コストの最小化、成果を言語化したふりかえりシートの提供、年間計画への組み込みサポートが差別化に有効です。
+</div>
