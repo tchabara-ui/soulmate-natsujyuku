@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夏塾2025 & カービングマスター | 白馬岩岳スノーボードスクール</title>
+  <style>
+    /* ========================================
+       RESET & BASE
+    ======================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      color: #1a2540;
+      background: #ffffff;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ========================================
+       CSS VARIABLES
+    ======================================== */
+    :root {
+      --navy:    #0f172a;
+      --blue:    #2563eb;
+      --blue-lt: #eff6ff;
+      --ice:     #e0f0ff;
+      --orange:  #f97316;
+      --white:   #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100:#f1f5f9;
+      --gray-400:#94a3b8;
+      --gray-600:#475569;
+      --gray-800:#1e293b;
+      --radius:  14px;
+      --shadow:  0 4px 24px rgba(15,23,42,.10);
+      --shadow-lg: 0 12px 48px rgba(15,23,42,.16);
+    }
+
+    /* ========================================
+       UTILITY
+    ======================================== */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .section   { padding: 80px 0; }
+    .section-alt { background: var(--gray-50); }
+    .section-navy { background: var(--navy); color: #fff; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-lt);
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -.02em;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .section-title.light { color: #fff; }
+    .section-sub {
+      font-size: 16px;
+      color: var(--gray-600);
+      margin-bottom: 48px;
+      max-width: 560px;
+    }
+    .section-sub.light { color: #94a3b8; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 99px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); opacity: .92; }
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(249,115,22,.35);
+    }
+    .btn-secondary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(37,99,235,.30);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--navy);
+      box-shadow: var(--shadow);
+    }
+
+    /* ========================================
+       HEADER / NAV
+    ======================================== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.07);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .logo-text {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .logo-text span { color: var(--blue); }
+    nav { display: flex; gap: 24px; }
+    nav a {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-600);
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--orange);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    /* ========================================
+       HERO
+    ======================================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      padding-top: 64px;
+    }
+
+    /* Mountain SVG background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    /* Gradient overlay */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+        rgba(15,23,42,.85) 0%,
+        rgba(15,23,42,.55) 50%,
+        rgba(37,99,235,.20) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 0;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,99,235,.3);
+      border: 1px solid rgba(37,99,235,.5);
+      border-radius: 99px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: #93c5fd;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: #22d3ee;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.5; transform:scale(1.4); }
+    }
+    .hero-title {
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: #60a5fa;
+    }
+    .hero-quotes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .hero-quote {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #e2e8f0;
+      max-width: 420px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-quote::before {
+      content: '💬';
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .hero-answer {
+      background: linear-gradient(135deg, rgba(37,99,235,.25), rgba(14,165,233,.15));
+      border: 1px solid rgba(96,165,250,.3);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      max-width: 480px;
+      color: #bfdbfe;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .hero-answer strong { color: #fff; font-size: 17px; }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,.5);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent);
+      animation: scrollDown 2s ease-in-out infinite;
+    }
+    @keyframes scrollDown {
+      0%   { transform: scaleY(0); transform-origin: top; opacity:0; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity:1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity:0; }
+    }
+
+    /* ========================================
+       STATS BAR
+    ======================================== */
+    .stats-bar {
+      background: var(--blue);
+      padding: 28px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      text-align: center;
+      divide-x: 1px solid rgba(255,255,255,.2);
+    }
+    .stat-item {
+      padding: 8px 16px;
+      border-right: 1px solid rgba(255,255,255,.2);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label { font-size: 12px; color: #bfdbfe; font-weight: 500; }
+
+    /* ========================================
+       CONCEPT
+    ======================================== */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .concept-visual {
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 60%, #1a4a8a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .concept-visual svg { width: 80%; opacity: .85; }
+    .concept-badge {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 12px;
+      padding: 12px 16px;
+      text-align: center;
+      color: #fff;
+    }
+    .concept-badge-num { font-size: 28px; font-weight: 900; }
+    .concept-badge-txt { font-size: 11px; opacity: .7; }
+    .concept-points { display: flex; flex-direction: column; gap: 20px; }
+    .point-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 24px;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid #e2e8f0;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .point-card:hover {
+      box-shadow: var(--shadow);
+      border-color: #bfdbfe;
+    }
+    .point-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--blue-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .point-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .point-desc { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
+
+    /* ========================================
+       EVENT SECTION
+    ======================================== */
+    .event-card {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1a4a8a 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 400px;
+    }
+    .event-body {
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .event-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(249,115,22,.2);
+      border: 1px solid rgba(249,115,22,.5);
+      border-radius: 99px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fdba74;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .event-title {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .event-meta { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .event-meta-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+    .event-meta-icon {
+      font-size: 16px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .event-meta-label { font-weight: 700; color: #94a3b8; font-size: 11px; display: block; }
+    .event-meta-val { color: #e2e8f0; font-weight: 600; }
+    .event-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .event-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .event-visual-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(37,99,235,.15), rgba(14,165,233,.1));
+    }
+    .event-cal {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 20px;
+      padding: 32px 40px;
+      text-align: center;
+      color: #fff;
+    }
+    .event-cal-month {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      margin-bottom: 8px;
+    }
+    .event-cal-dates {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -.04em;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .event-cal-day {
+      font-size: 15px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .event-cal-divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(to right, #3b82f6, #06b6d4);
+      margin: 14px auto;
+      border-radius: 1px;
+    }
+    .event-cal-venue {
+      font-size: 12px;
+      color: #7dd3fc;
+      font-weight: 600;
+    }
+
+    /* ========================================
+       FEATURES GRID
+    ======================================== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      padding: 32px 28px;
+      border-radius: 20px;
+      background: var(--white);
+      border: 1px solid #e2e8f0;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .feature-emoji {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .feature-card-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .feature-card-desc { font-size: 14px; color: var(--gray-600); line-height: 1.65; }
+
+    /* ========================================
+       LINE SECTION
+    ======================================== */
+    .line-section {
+      background: linear-gradient(135deg, #06c755 0%, #04a244 100%);
+      padding: 64px 0;
+    }
+    .line-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+    .line-icon-wrap {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      flex-shrink: 0;
+    }
+    .line-text { flex: 1; }
+    .line-title { font-size: 26px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+    .line-sub { color: rgba(255,255,255,.8); font-size: 15px; line-height: 1.6; }
+    .btn-line {
+      background: #fff;
+      color: #06c755;
+      font-weight: 800;
+      padding: 16px 36px;
+      border-radius: 99px;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 6px 24px rgba(0,0,0,.15);
+      white-space: nowrap;
+    }
+    .btn-line:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,.2); }
+
+    /* ========================================
+       REVIEW / TRUST
+    ======================================== */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      padding: 36px 40px;
+      text-align: center;
+    }
+    .review-stars { font-size: 28px; margin-bottom: 8px; }
+    .review-score { font-size: 64px; font-weight: 900; color: var(--navy); line-height: 1; }
+    .review-out  { font-size: 18px; color: var(--gray-400); font-weight: 500; }
+    .review-count { font-size: 14px; color: var(--gray-600); margin-top: 8px; }
+    .review-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      padding: 8px 20px;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 99px;
+      transition: background .2s;
+    }
+    .review-link:hover { background: var(--blue-lt); }
+    .school-info { padding: 8px 0; }
+    .greeting-card {
+      background: var(--gray-50);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--blue);
+    }
+    .greeting-text { font-size: 15px; color: var(--gray-600); line-height: 1.85; font-style: italic; }
+    .greeting-name { font-weight: 800; color: var(--navy); margin-top: 16px; font-size: 14px; }
+    .related-schools { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .school-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      transition: border-color .2s, background .2s;
+    }
+    .school-link:hover { border-color: #93c5fd; background: var(--blue-lt); }
+    .school-link-icon { font-size: 18px; }
+
+    /* ========================================
+       CTA SECTION
+    ======================================== */
+    .cta-section {
+      padding: 100px 0;
+      background: var(--navy);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-bg-circle {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,.2) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-title { font-size: clamp(28px, 4vw, 48px); font-weight: 900; color: #fff; margin-bottom: 16px; line-height: 1.2; }
+    .cta-sub { color: #94a3b8; font-size: 16px; margin-bottom: 40px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    footer {
+      background: #060e1f;
+      color: #94a3b8;
+      padding: 48px 0 32px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      margin-bottom: 24px;
+    }
+    .footer-logo {
+      font-size: 14px;
+      font-weight: 800;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+    .footer-logo span { color: #60a5fa; }
+    .footer-score {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .footer-links { display: flex; gap: 48px; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #475569; margin-bottom: 4px; }
+    .footer-col a { font-size: 13px; color: #64748b; transition: color .2s; }
+    .footer-col a:hover { color: #93c5fd; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #334155;
+    }
+
+    /* ========================================
+       RESPONSIVE
+    ======================================== */
+    @media (max-width: 768px) {
+      .section { padding: 56px 0; }
+      nav { display: none; }
+      .concept-grid { grid-template-columns: 1fr; }
+      .concept-visual { aspect-ratio: 16/9; }
+      .event-card { grid-template-columns: 1fr; }
+      .event-body { padding: 36px 28px; }
+      .event-visual { padding: 32px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .related-schools { grid-template-columns: 1fr; }
+      .line-inner { flex-direction: column; text-align: center; }
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-links { flex-direction: column; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .hero-quote { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========================================
+     HEADER
+======================================== -->
+<header>
+  <div class="header-inner">
+    <div class="logo-text">
+      白馬岩岳<span>スノーボードスクール</span><br>
+      <span style="color:#94a3b8;font-weight:500;font-size:11px;">Hakuba Iwatake Snowboard School</span>
+    </div>
+    <nav>
+      <a href="#concept">コンセプト</a>
+      <a href="#event">イベント</a>
+      <a href="#features">特徴</a>
+      <a href="#school">スクール</a>
+      <a href="https://dgent.jp/e.asp?no=2400385" class="nav-cta">今すぐ申込む →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========================================
+     HERO
+======================================== -->
+<section class="hero">
+  <!-- SVG Mountain Background -->
+  <div class="hero-bg">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
+         xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;height:100%;position:absolute;top:0;left:0;">
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0f172a"/>
+          <stop offset="100%" stop-color="#1e3a5f"/>
+        </linearGradient>
+        <linearGradient id="mtnGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1e40af" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#1e3a5f" stop-opacity="0.9"/>
+        </linearGradient>
+        <linearGradient id="snowGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.5"/>
+        </linearGradient>
+      </defs>
+      <rect width="1440" height="900" fill="url(#skyGrad)"/>
+      <!-- Stars -->
+      <circle cx="200" cy="80"  r="1.5" fill="white" opacity="0.4"/>
+      <circle cx="450" cy="50"  r="1"   fill="white" opacity="0.3"/>
+      <circle cx="700" cy="120" r="1.5" fill="white" opacity="0.5"/>
+      <circle cx="950" cy="60"  r="1"   fill="white" opacity="0.35"/>
+      <circle cx="1200" cy="90" r="1.5" fill="white" opacity="0.4"/>
+      <circle cx="1350" cy="40" r="1"   fill="white" opacity="0.3"/>
+      <circle cx="320"  cy="160" r="1"  fill="white" opacity="0.25"/>
+      <circle cx="580"  cy="30"  r="1.5" fill="white" opacity="0.45"/>
+      <circle cx="850"  cy="170" r="1"  fill="white" opacity="0.3"/>
+      <circle cx="1100" cy="130" r="1.5" fill="white" opacity="0.4"/>
+      <!-- Far mountains -->
+      <polygon points="0,700 180,280 360,620 500,350 700,600 900,320 1100,580 1250,260 1440,500 1440,900 0,900"
+               fill="url(#mtnGrad)" opacity="0.5"/>
+      <!-- Near mountains -->
+      <polygon points="0,900 100,500 280,750 420,380 600,700 750,400 950,680 1100,300 1280,650 1440,420 1440,900"
+               fill="#0f172a" opacity="0.7"/>
+      <!-- Snow caps -->
+      <polygon points="100,500 140,400 180,500" fill="url(#snowGrad)"/>
+      <polygon points="420,380 460,280 500,380" fill="url(#snowGrad)"/>
+      <polygon points="750,400 795,290 840,400" fill="url(#snowGrad)"/>
+      <polygon points="1100,300 1145,190 1190,300" fill="url(#snowGrad)"/>
+      <!-- Snowboard line traces -->
+      <path d="M 0,650 Q 360,580 720,640 T 1440,600" stroke="rgba(147,197,253,0.15)" stroke-width="2" fill="none"/>
+      <path d="M 0,700 Q 400,640 800,700 T 1440,660" stroke="rgba(147,197,253,0.10)" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
+    <div class="hero-eyebrow">夏塾2025 &amp; カービングマスター</div>
+
+    <h1 class="hero-title">
+      夏のオフトレで<br>
+      <em>冬のライディングを</em><br>
+      変える。
+    </h1>
+
+    <div class="hero-quotes">
+      <div class="hero-quote">「もう１歩うまくなりたい」</div>
+      <div class="hero-quote">「自分の滑りを変えたい。」</div>
+      <div class="hero-quote">「もっと滑れるようになりたい！」</div>
+    </div>
+
+    <div class="hero-answer">
+      <strong>「雪のない夏に、どうやって上達するの？」</strong><br>
+      その答えが <strong style="color:#60a5fa;">夏塾</strong> にあります。<br>
+      オフシーズンの過ごし方で、冬のパフォーマンスは劇的に変わります。
+    </div>
+
+    <div class="hero-btns">
+      <a href="https://dgent.jp/e.asp?no=2400385" class="btn btn-primary">
+        🏂 夏塾白馬フェスに申込む
+      </a>
+      <a href="https://natsujyuku.jimdofree.com/" class="btn btn-white">
+        夏塾公式サイト →
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- ========================================
+     STATS BAR
+======================================== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">5.0<span style="font-size:18px;"> ★</span></div>
+        <div class="stat-label">Google レビュー評価</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">114+</div>
+        <div class="stat-label">クチコミ件数</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2日間</div>
+        <div class="stat-label">夏塾白馬フェス2025</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================
+     CONCEPT
+======================================== -->
+<section class="section" id="concept">
+  <div class="container">
+    <div class="concept-grid">
+      <!-- Visual side -->
+      <div class="concept-visual">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#60a5fa"/>
+              <stop offset="100%" stop-color="#3b82f6"/>
+            </linearGradient>
+          </defs>
+          <!-- Mountain -->
+          <polygon points="50,250 200,60 350,250" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <polygon points="200,60 230,90 200,120 170,90" fill="rgba(255,255,255,0.2)"/>
+          <!-- Snowboard -->
+          <ellipse cx="200" cy="200" rx="80" ry="16" fill="url(#boardGrad)" rx="80" ry="12" transform="rotate(-15,200,200)"/>
+          <!-- Rider silhouette -->
+          <circle cx="210" cy="168" r="12" fill="rgba(255,255,255,0.7)"/>
+          <path d="M 210,180 L 210,220 L 195,240 M 210,220 L 225,235" stroke="rgba(255,255,255,0.7)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M 210,195 L 190,210 M 210,195 L 232,205" stroke="rgba(255,255,255,0.7)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- Carve line -->
+          <path d="M 80,260 Q 150,200 200,215 Q 250,230 330,160" stroke="#60a5fa" stroke-width="3" fill="none" stroke-dasharray="8,4" stroke-linecap="round"/>
+        </svg>
+        <div class="concept-badge">
+          <div class="concept-badge-num" style="color:#fff;">OFF</div>
+          <div class="concept-badge-txt" style="color:rgba(255,255,255,.6);">SEASON<br>TRAINING</div>
+        </div>
+      </div>
+
+      <!-- Text side -->
+      <div>
+        <div class="tag">WHY SUMMER?</div>
+        <h2 class="section-title">夏こそが、<br>上達の黄金期。</h2>
+        <p class="section-sub">
+          スノーボードの上達は、冬のゲレンデだけで決まりません。
+          オフシーズンにどう動き、どう体を鍛えるかが、
+          翌シーズンのライディングを大きく左右します。
+        </p>
+        <div class="concept-points">
+          <div class="point-card">
+            <div class="point-icon">🧠</div>
+            <div>
+              <div class="point-title">動きのパターンを定着させる</div>
+              <div class="point-desc">体の動かし方をオフトレで反復することで、
+              スノーボードの動作が体に染み込みます。</div>
+            </div>
+          </div>
+          <div class="point-card">
+            <div class="point-icon">💪</div>
+            <div>
+              <div class="point-title">体づくりとコンディション維持</div>
+              <div class="point-desc">体幹・バランス・下半身の強化が、
+              カービングや地形攻略のベースになります。</div>
+            </div>
+          </div>
+          <div class="point-card">
+            <div class="point-icon">🏔️</div>
+            <div>
+              <div class="point-title">白馬で仲間と過ごす夏</div>
+              <div class="point-desc">インストラクターと共に、夏の白馬のアクティビティを
+              満喫しながら仲間の絆も深めます。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     EVENT
+======================================== -->
+<section class="section section-alt" id="event">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="tag">MAIN EVENT</div>
+      <h2 class="section-title" style="margin-bottom:8px;">夏塾白馬フェス2025</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">
+        スノーボーダーならだれでも参加できる、夏の白馬2日間。
+      </p>
+    </div>
+
+    <div class="event-card">
+      <div class="event-body">
+        <div class="event-badge">🎉 開催決定！</div>
+        <h3 class="event-title">
+          夏の白馬で<br>スノーボーダーが集まる<br>2日間。
+        </h3>
+        <div class="event-meta">
+          <div class="event-meta-row">
+            <span class="event-meta-icon">📅</span>
+            <div>
+              <span class="event-meta-label">日程</span>
+              <span class="event-meta-val">2025年 8月2日（土）〜 8月3日（日）</span>
+            </div>
+          </div>
+          <div class="event-meta-row">
+            <span class="event-meta-icon">📍</span>
+            <div>
+              <span class="event-meta-label">会場</span>
+              <span class="event-meta-val">
+                長野県白馬村 岩岳マウンテンリゾート<br>
+                <span style="color:#64748b;font-weight:400;font-size:13px;">& GLOPAnte（グロパンテ）</span>
+              </span>
+            </div>
+          </div>
+          <div class="event-meta-row">
+            <span class="event-meta-icon">🏂</span>
+            <div>
+              <span class="event-meta-label">対象</span>
+              <span class="event-meta-val">スノーボーダーならだれでも参加OK</span>
+            </div>
+          </div>
+        </div>
+        <div class="event-btns">
+          <a href="https://dgent.jp/e.asp?no=2400385" class="btn btn-primary">
+            今すぐ申込む →
+          </a>
+          <a href="https://natsujyuku.jimdofree.com/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0/%E5%A4%8F%E5%A1%BE%E7%99%BD%E9%A6%AC%E3%83%95%E3%82%A7%E3%82%B92024/" class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:#93c5fd;">
+            詳細を見る
+          </a>
+        </div>
+      </div>
+
+      <div class="event-visual">
+        <div class="event-visual-bg"></div>
+        <div class="event-cal">
+          <div class="event-cal-month">August 2025</div>
+          <div class="event-cal-dates">2–3</div>
+          <div class="event-cal-day">土曜日 ─ 日曜日</div>
+          <div class="event-cal-divider"></div>
+          <div class="event-cal-venue">
+            🏔 白馬村 岩岳<br>
+            マウンテンリゾート
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     FEATURES
+======================================== -->
+<section class="section" id="features">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="tag">HIGHLIGHTS</div>
+      <h2 class="section-title">夏塾で得られること</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">
+        スノーボードが「もっと好きになる」体験が詰まっています。
+      </p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-emoji">🏂</span>
+        <div class="feature-card-title">プロのインストラクターと共に</div>
+        <div class="feature-card-desc">
+          白馬岩岳スノーボードスクールのインストラクターが
+          あなたの上達をサポート。技術だけでなく、
+          スノーボードへの向き合い方も変わります。
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">🌿</span>
+        <div class="feature-card-title">夏の白馬を全力で楽しむ</div>
+        <div class="feature-card-desc">
+          トレーニングだけじゃない。岩岳マウンテンリゾートの
+          グリーンシーズンアクティビティを
+          仲間と一緒に満喫する2日間。
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">🤝</span>
+        <div class="feature-card-title">仲間との繋がりが財産に</div>
+        <div class="feature-card-desc">
+          同じ目標を持つスノーボーダーが集まる場所。
+          ゲレンデで一緒に滑る仲間が、
+          ここから生まれるかもしれません。
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">📈</span>
+        <div class="feature-card-title">パフォーマンスが確実にアップ</div>
+        <div class="feature-card-desc">
+          オフシーズンのトレーニングは、
+          冬の上達に直結します。
+          今年の夏の行動が、今シーズンの滑りを変えます。
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">⭐</span>
+        <div class="feature-card-title">Google評価5.0の信頼</div>
+        <div class="feature-card-desc">
+          114件のクチコミで満点評価。
+          長年にわたって多くのスノーボーダーから
+          信頼されてきたスクールです。
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-emoji">📲</span>
+        <div class="feature-card-title">最新情報はLINEで</div>
+        <div class="feature-card-desc">
+          LINE公式アカウントに登録すると、
+          イベント情報・キャンプ情報など
+          最新ニュースをいち早くお届けします。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     LINE
+======================================== -->
+<section class="line-section">
+  <div class="container">
+    <div class="line-inner">
+      <div class="line-icon-wrap">💬</div>
+      <div class="line-text">
+        <h3 class="line-title">LINE公式アカウントで最新情報をゲット！</h3>
+        <p class="line-sub">
+          夏塾2025の最新情報・白馬イベント・キャンプ情報など、
+          いち早くお届けします。登録は無料です。
+        </p>
+      </div>
+      <a href="https://natsujyuku.jimdofree.com/" class="btn-line">
+        <span>🟢</span> LINEで登録する
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     TRUST / SCHOOL
+======================================== -->
+<section class="section section-alt" id="school">
+  <div class="container">
+    <div class="tag">SCHOOL & TRUST</div>
+    <h2 class="section-title" style="margin-bottom:48px;">白馬岩岳スノーボードスクール</h2>
+
+    <div class="trust-grid">
+      <!-- Left: Reviews + Greeting -->
+      <div>
+        <div class="review-card" style="margin-bottom:24px;">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <div class="review-score">5.0 <span class="review-out">/ 5</span></div>
+          <div class="review-count">Googleクチコミ 114件の評価</div>
+          <a href="https://search.google.com/local/reviews?placeid=ChIJ2zX51z_O918RZhG1gGYjL54"
+             class="review-link">
+            クチコミを見る →
+          </a>
+        </div>
+
+        <div class="greeting-card">
+          <p class="greeting-text">
+            「白馬に雪が降りました。今シーズンもたくさんの皆様のスノーボードライフが
+            安全で楽しいものとなりますよう、サポートさせていただきます。
+            皆様のお越しをスタッフ一同お待ちしております。」
+          </p>
+          <div class="greeting-name">
+            白馬岩岳スノーボードスクール 代表　茶原 忠督
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Related schools -->
+      <div class="school-info">
+        <h3 style="font-size:17px;font-weight:800;color:var(--navy);margin-bottom:20px;">関連スクール・サービス</h3>
+        <div class="related-schools">
+          <a href="http://www.lachaba-sbs.com/" class="school-link">
+            <span class="school-link-icon">🏔️</span>
+            La Chaba SBS<br>
+            <span style="font-size:11px;color:#94a3b8;font-weight:400;">姉妹校</span>
+          </a>
+          <a href="https://natsujyuku.jimdofree.com/" class="school-link">
+            <span class="school-link-icon">☀️</span>
+            夏塾2025<br>
+            <span style="font-size:11px;color:#94a3b8;font-weight:400;">公式サイト</span>
+          </a>
+          <a href="https://www.sorakakeru.com/" class="school-link">
+            <span class="school-link-icon">🪁</span>
+            ソラカケル<br>
+            <span style="font-size:11px;color:#94a3b8;font-weight:400;">夏季アクティビティ</span>
+          </a>
+          <a href="https://slmt.co.jp/" class="school-link">
+            <span class="school-link-icon">🤝</span>
+            ソウルメイト<br>
+            <span style="font-size:11px;color:#94a3b8;font-weight:400;">運営会社</span>
+          </a>
+          <a href="https://iwatake-mountain-resort.com/winter" class="school-link">
+            <span class="school-link-icon">⛷️</span>
+            岩岳スノーフィールド<br>
+            <span style="font-size:11px;color:#94a3b8;font-weight:400;">ゲレンデ公式</span>
+          </a>
+          <a href="https://www.facebook.com/slacklineskobe/" class="school-link">
+            <span class="school-link-icon">⚡</span>
+            スラックライン神戸<br>
+            <span style="font-size:11px;color:#94a3b8;font-weight:400;">オフトレ</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     CTA
+======================================== -->
+<section class="cta-section">
+  <div class="cta-bg-circle"></div>
+  <div class="container cta-inner">
+    <div class="tag" style="background:rgba(37,99,235,.2);color:#93c5fd;border:1px solid rgba(37,99,235,.4);">
+      LIMITED SPOTS
+    </div>
+    <h2 class="cta-title">
+      今年の夏が、<br>あなたのライディングを変える。
+    </h2>
+    <p class="cta-sub">
+      夏塾白馬フェス2025 ─ 8月2日（土）〜 3日（日）<br>
+      スノーボーダーなら誰でも参加できます。
+    </p>
+    <div class="cta-btns">
+      <a href="https://dgent.jp/e.asp?no=2400385" class="btn btn-primary" style="font-size:17px;padding:18px 40px;">
+        🏂 今すぐ申込む
+      </a>
+      <a href="https://natsujyuku.jimdofree.com/" class="btn" style="background:rgba(255,255,255,.08);color:#e2e8f0;border:1px solid rgba(255,255,255,.15);">
+        夏塾の詳細を見る →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     FOOTER
+======================================== -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          白馬岩岳<span>スノーボードスクール</span><br>
+          <span style="color:#475569;font-weight:400;font-size:11px;">Hakuba Iwatake Snowboard School</span>
+        </div>
+        <div class="footer-score">
+          ⭐ 5.0 / 5（Googleクチコミ 114件）
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:#334155;">
+          〒399-9301 長野県北安曇郡白馬村
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">レッスン</div>
+          <a href="https://www.hakubaiwatake-sbs.com/日本語-1/lesson/">グループレッスン</a>
+          <a href="https://www.hakubaiwatake-sbs.com/日本語-1/lesson/プライベートレッスン/">プライベートレッスン</a>
+          <a href="https://www.hakubaiwatake-sbs.com/日本語-1/skill-test/">スキルテスト</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">イベント</div>
+          <a href="https://dgent.jp/e.asp?no=2400385">夏塾白馬フェス申込</a>
+          <a href="https://natsujyuku.jimdofree.com/">夏塾公式サイト</a>
+          <a href="https://www.hakubaiwatake-sbs.com/日本語-1/イベント/">その他イベント</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">スクール</div>
+          <a href="https://www.hakubaiwatake-sbs.com/日本語-1/staff紹介/">スタッフ紹介</a>
+          <a href="https://www.hakubaiwatake-sbs.com/日本語-1/contact/">お問い合わせ</a>
+          <a href="https://www.hakubaiwatake-sbs.com/about/">概要</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 白馬岩岳スノーボードスクール. All rights reserved.</span>
+      <span>
+        <a href="https://www.hakubaiwatake-sbs.com/j/privacy" style="color:#334155;margin-right:16px;">プライバシーポリシー</a>
+        <a href="https://www.hakubaiwatake-sbs.com/sitemap/" style="color:#334155;">サイトマップ</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
