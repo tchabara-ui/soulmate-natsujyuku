@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>井本さんのAI壁打ち 想定質問集｜ソウルメイト</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --primary-light: #2563a8;
+    --accent: #e8a020;
+    --accent-light: #ffd280;
+    --bg: #f4f7fc;
+    --bg-card: #ffffff;
+    --text: #1c2535;
+    --text-muted: #5a6880;
+    --border: #d0daea;
+    --lv1: #e6f0ff;
+    --lv1b: #2563a8;
+    --lv2: #e8f7f0;
+    --lv2b: #1a8a5a;
+    --lv3: #fff4e0;
+    --lv3b: #c07800;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0f2744 0%, #1a3a5c 60%, #1e4d80 100%);
+    color: white;
+    padding: 64px 40px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -40px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: rgba(232,160,32,0.07);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(232,160,32,0.22);
+    border: 1px solid rgba(232,160,32,0.5);
+    color: var(--accent-light);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    position: relative; z-index: 1;
+  }
+  .hero h1 span { color: var(--accent-light); }
+  .hero p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HOW TO USE */
+  .how-to {
+    background: var(--bg-card);
+    border-left: 5px solid var(--primary-light);
+    border-radius: 0 14px 14px 0;
+    padding: 28px 32px;
+    margin: 44px 0 36px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  }
+  .how-to h2 {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1.1rem;
+    color: var(--primary-light);
+    margin-bottom: 10px;
+  }
+  .how-to p { color: var(--text-muted); font-size: 14px; }
+  .how-to .step-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .how-to .sr {
+    background: var(--lv1);
+    border-radius: 10px;
+    padding: 12px 16px;
+    flex: 1;
+    min-width: 160px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--primary-light);
+    font-weight: 700;
+  }
+  .how-to .sr span { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); margin-top: 4px; }
+
+  /* LEVEL HEADER */
+  .level-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 48px 0 22px;
+  }
+  .level-badge {
+    padding: 8px 20px;
+    border-radius: 24px;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .lv1 .level-badge { background: var(--lv1); color: var(--lv1b); }
+  .lv2 .level-badge { background: var(--lv2); color: var(--lv2b); }
+  .lv3 .level-badge { background: var(--lv3); color: var(--lv3b); }
+  .level-header h2 {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--text);
+  }
+  .level-header p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+  /* QUESTION CARD */
+  .q-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
+  }
+  .q-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px 26px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .q-num {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    min-width: 44px;
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .lv1 .q-num { color: var(--lv1b); }
+  .lv2 .q-num { color: var(--lv2b); }
+  .lv3 .q-num { color: var(--lv3b); }
+
+  .q-main { flex: 1; }
+  .q-theme {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+  }
+  .lv1 .q-theme { color: var(--lv1b); }
+  .lv2 .q-theme { color: var(--lv2b); }
+  .lv3 .q-theme { color: var(--lv3b); }
+  .q-title {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.45;
+  }
+
+  .q-toggle {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    padding-top: 6px;
+  }
+  .q-card.open .q-toggle { transform: rotate(180deg); }
+
+  .q-body {
+    display: none;
+    padding: 0 26px 26px;
+    border-top: 1px solid var(--border);
+  }
+  .q-card.open .q-body { display: block; }
+
+  .q-body .purpose {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 16px 0 14px;
+    padding-left: 14px;
+    border-left: 3px solid var(--border);
+  }
+
+  /* PROMPT BOX */
+  .prompt-box {
+    background: #f0f4fa;
+    border: 1.5px solid #c8d8ee;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    position: relative;
+  }
+  .prompt-box .p-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary-light);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .prompt-box p {
+    font-size: 14px;
+    color: var(--text);
+    font-style: italic;
+    line-height: 1.75;
+  }
+  .tool-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    position: absolute;
+    top: 14px; right: 14px;
+  }
+  .badge-gemini { background: #e8f0fe; color: #2563c8; }
+  .badge-chatgpt { background: #e6f7f3; color: #10a37f; }
+  .badge-claude { background: #fde8df; color: #c96442; }
+
+  /* NEXT ACTION */
+  .next-action {
+    background: #fffbee;
+    border: 1.5px solid #f0d580;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #7a5c00;
+  }
+  .next-action strong { color: #5a4000; display: block; margin-bottom: 4px; }
+
+  /* GROWTH LADDER */
+  .growth-ladder {
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1.5px solid var(--border);
+    padding: 32px;
+    margin: 48px 0 32px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  }
+  .growth-ladder h2 {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-bottom: 24px;
+    color: var(--primary);
+    text-align: center;
+  }
+  .ladder {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ladder-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+  .ladder-left {
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .ladder-dot {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 16px;
+  }
+  .ladder-line {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+  }
+  .ld1 { background: var(--lv1b); }
+  .ld2 { background: var(--lv2b); }
+  .ld3 { background: var(--lv3b); }
+  .ll1 { background: var(--lv1b); opacity: 0.3; }
+  .ll2 { background: var(--lv2b); opacity: 0.3; }
+  .ladder-content {
+    flex: 1;
+    padding: 14px 0 24px 16px;
+  }
+  .ladder-content .l-phase {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .lp1 { color: var(--lv1b); }
+  .lp2 { color: var(--lv2b); }
+  .lp3 { color: var(--lv3b); }
+  .ladder-content h3 {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ladder-content p { font-size: 13px; color: var(--text-muted); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 44px 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.65);
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+  }
+  .footer strong { color: white; }
+  .footer p { font-size: 13px; margin-top: 6px; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
+    .how-to .step-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🧠 AI壁打ち実践集｜SOULMATE SALES</div>
+  <h1>AIと問いかけながら<br><span>自分の戦略を描く</span><br>想定質問集</h1>
+  <p>井本さん専用｜教育機関向け営業 × AI成長支援プログラム<br>株式会社ソウルメイト</p>
+</div>
+
+<div class="container">
+
+  <!-- HOW TO USE -->
+  <div class="how-to">
+    <h2>📌 このシートの使い方</h2>
+    <p>この質問集は、AIに投げかけることで<strong>「自分で考える力」と「具体的な行動戦略」</strong>が育つように設計されています。順番通りでなくてOK。気になる質問からAIに聞いてみましょう。</p>
+    <div class="step-row">
+      <div class="sr">① 質問を選ぶ<span>気になるものからでOK</span></div>
+      <div class="sr">② AIに聞く<span>プロンプト例をそのままコピーして使える</span></div>
+      <div class="sr">③ 深掘りする<span>返答をもとに「じゃあ〇〇は？」と続ける</span></div>
+      <div class="sr">④ 行動に落とす<span>ネクストアクションを決めて動く</span></div>
+    </div>
+  </div>
+
+  <!-- 成長ラダー -->
+  <div class="growth-ladder">
+    <h2>🪜 井本さんの成長ステージ</h2>
+    <div class="ladder">
+      <div class="ladder-row">
+        <div class="ladder-left">
+          <div class="ladder-dot ld1"></div>
+          <div class="ladder-line ll1"></div>
+        </div>
+        <div class="ladder-content">
+          <div class="l-phase lp1">PHASE 1｜Q01〜Q04</div>
+          <h3>まず「自分の強みと市場」を知る</h3>
+          <p>現状把握と自己理解。AIを使って自分の立ち位置を整理する段階。</p>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <div class="ladder-left">
+          <div class="ladder-dot ld2"></div>
+          <div class="ladder-line ll2"></div>
+        </div>
+        <div class="ladder-content">
+          <div class="l-phase lp2">PHASE 2｜Q05〜Q08</div>
+          <h3>「攻め方」を設計する</h3>
+          <p>アプローチ戦略・提案設計・断られた時の対処法を構築する段階。</p>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <div class="ladder-left">
+          <div class="ladder-dot ld3"></div>
+        </div>
+        <div class="ladder-content">
+          <div class="l-phase lp3">PHASE 3｜Q09〜Q11</div>
+          <h3>「年間の戦略と仕組み」を描く</h3>
+          <p>中長期の営業計画・関係構築・自分だけの武器を作る段階。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PHASE 1 ===== -->
+  <div class="level-header lv1">
+    <div class="level-badge">PHASE 1｜現状把握・自己理解</div>
+    <div>
+      <h2>まず「自分の強みと市場」を知る</h2>
+      <p>Q01〜Q04｜ここから始めよう</p>
+    </div>
+  </div>
+
+  <!-- Q01 -->
+  <div class="q-card lv1">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">01</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：自己棚卸し</div>
+        <div class="q-title">自分はどんな「価値」を学校に届けられる人間か、整理したい</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：「何を売るか」より「何を届けられるか」が明確になると、会話が変わります。自分の価値を言語化する練習です。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-claude">Claude</div>
+        <p>「私は教育機関向けに体験型のチームビルディング研修を提案する営業です。7年以上この仕事をしています。
+自分が学校の先生たちに届けられる価値を整理したいのですが、私のことを知らない人に伝えるには何を最初に言えばいいですか？整理を手伝ってください。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        AIの答えを見て「その中でいちばん自分らしいのはどれ？」「もっと具体的なエピソードに落とすと？」と続けてみよう。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q02 -->
+  <div class="q-card lv1">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">02</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：ターゲット理解</div>
+        <div class="q-title">教育機関といっても種類がいろいろある。どこが一番刺さりやすいか知りたい</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：「全部に営業」では力が分散します。どこに集中すれば結果が出やすいかを見極める視点を養います。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-gemini">Gemini</div>
+        <p>「私は幼稚園・保育園・小学校・中学校などに研修を提案しています。体験型・スポーツ要素があるのが強みです。
+どの種類の学校が、チームビルディング研修に一番課題意識が高いと思いますか？理由も含めて教えてください。また、攻めやすい順にランキングしてみてください。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        ランキングを見て「なぜ1位なのか？どんな悩みを持ってるのか？」をさらに聞いてみよう。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q03 -->
+  <div class="q-card lv1">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">03</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：自分の弱みを知る</div>
+        <div class="q-title">「守りは得意だが攻めが苦手」な自分が、新規営業でつまずきやすいパターンは何か知りたい</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：弱みを知ることは弱さではありません。自分のパターンを把握すれば、事前に対策できます。AIは正直に教えてくれます。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-claude">Claude</div>
+        <p>「私は指示されたことをきちんとこなすのは得意ですが、自分からアイデアを出したり、新しいことに踏み出すのが苦手なタイプです。
+このタイプの営業担当者が新規開拓でよく陥る失敗パターンを教えてください。また、それぞれへの対処法も教えてください。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        「この中で自分が一番やりがちなのは？」と自問してから、AIに「この失敗を防ぐ具体的な行動プランは？」と続けよう。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q04 -->
+  <div class="q-card lv1">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">04</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：競合理解</div>
+        <div class="q-title">ライバルはどんな会社か。どう差をつければいいか整理したい</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：「うちのほうがいい」を説明するには、競合を知る必要があります。比較できると提案に自信が生まれます。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-chatgpt">ChatGPT</div>
+        <p>「教育機関向けのチームビルディング研修市場には、どんな会社・サービスがあると思いますか？
+私たちの強みは体験型・スポーツやアウトドア要素・7年以上の実績です。一般的な競合と比べてどこを押し出せば差別化できますか？」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        「その強みを30秒で伝えるとしたら、どんな言い方が刺さる？」と続けよう。これがエレベーターピッチになります。
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PHASE 2 ===== -->
+  <div class="level-header lv2">
+    <div class="level-badge">PHASE 2｜攻め方の設計</div>
+    <div>
+      <h2>「アプローチ戦術」を作る</h2>
+      <p>Q05〜Q08｜新規開拓の動き方を設計しよう</p>
+    </div>
+  </div>
+
+  <!-- Q05 -->
+  <div class="q-card lv2">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">05</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：初回接触の設計</div>
+        <div class="q-title">「初めてのアプローチ」で好印象を残すにはどうすればいい？</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：第一印象は変えられません。「また会いたい」と思ってもらえる最初の接触の型を作ることが、開拓力の核心です。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-claude">Claude</div>
+        <p>「初めてアプローチする幼稚園の園長先生に、電話でアポを取ろうとしています。
+売り込まずに、まず会ってもらえるような30秒のトークスクリプトを作ってください。明るく誠実なトーンで。また、よくある断り文句への切り返しも3パターン教えてください。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        スクリプトができたら「このトークを小学校向けに変えると？」「メールでのアプローチ版も作って」と応用してみよう。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q06 -->
+  <div class="q-card lv2">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">06</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：ヒアリング力</div>
+        <div class="q-title">初回面談で「本当の課題」を引き出すにはどんな質問をすればいい？</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：提案の精度は「聞く力」で決まります。相手の本音を引き出す質問を持っていると、信頼関係が一気に深まります。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-gemini">Gemini</div>
+        <p>「初めて会う学校の教頭先生にヒアリングをします。チームビルディング研修の提案につなげたいのですが、まずは相手の課題や悩みを引き出したいです。
+『売り込まず、でも課題を自然に話してもらえる』ような質問を10個リストアップしてください。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        10個の質問が出たら「これをA4の1枚ヒアリングシートにまとめて」と頼んでみよう。次の面談からすぐ使えます。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q07 -->
+  <div class="q-card lv2">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">07</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：断られた時の対処</div>
+        <div class="q-title">「予算がない」「今は時期じゃない」と断られたとき、関係を切らずに次につなぐには？</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：断られた後の動き方が、長期の関係構築を決めます。「断られて終わり」にしない術を身につけましょう。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-claude">Claude</div>
+        <p>「小学校の校長先生から『今年は予算がないので難しい』と断られました。
+来年度につながる関係を維持するために、今できることを3つ提案してください。また、そのままフォローメールを書いてください。押しつけがましくない、温かいトーンで。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        メールができたら「半年後のフォローアップメールも作って」と続けよう。長期フォローの型ができます。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q08 -->
+  <div class="q-card lv2">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">08</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：提案書づくり</div>
+        <div class="q-title">相手の課題に刺さる提案書を、どう組み立てればいい？</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：「サービス紹介」より「課題解決の提案」の方が響きます。提案書の構成を学ぶと、どこでも使える型が身につきます。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-chatgpt">ChatGPT</div>
+        <p>「中学校の先生向けに、チームビルディング研修の提案書を作りたいです。
+学校が抱えている課題は『若手とベテランの関係がギスギスしている』『会議が活発でない』です。
+この課題に対して、私たちの体験型研修がどう解決できるかを伝える提案書の構成を教えてください。その後、実際に1枚分の文章も書いてください。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        「この提案書に、実際に研修を受けた学校の声（例）を加えて」と依頼すると、より説得力が増します。
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PHASE 3 ===== -->
+  <div class="level-header lv3">
+    <div class="level-badge">PHASE 3｜戦略・仕組みを描く</div>
+    <div>
+      <h2>「年間の戦略と自分の武器」を作る</h2>
+      <p>Q09〜Q11｜中長期で勝てる営業スタイルを設計しよう</p>
+    </div>
+  </div>
+
+  <!-- Q09 -->
+  <div class="q-card lv3">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">09</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：年間計画</div>
+        <div class="q-title">学校の「動くタイミング」に合わせた年間営業カレンダーを作りたい</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：学校には予算・行事・採用など独自のサイクルがあります。そのタイミングに合わせて動くと、断られる数が減り、成約が増えます。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-gemini">Gemini</div>
+        <p>「幼稚園・保育園・小学校を対象に研修を提案しています。
+学校の年度サイクル（4月始まり、予算計画、行事、人事異動など）に合わせて、どの月にどんなアプローチをするのが効果的ですか？
+月ごとの営業アクション年間カレンダーを作ってください。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        カレンダーができたら「いちばん重要な月はどこ？なぜ？」と確認してから、その月に向けた準備リストを作ってもらおう。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card lv3">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">10</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：関係構築・リピート</div>
+        <div class="q-title">一度契約した学校に「また頼みたい」と思ってもらうには何をすればいい？</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：新規開拓より既存関係の深耕の方が効率的です。守り型の強みを活かして、リピートと紹介を生む仕組みを作りましょう。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-claude">Claude</div>
+        <p>「一度研修を実施した学校に、翌年もまた依頼してもらうために、研修後から次の契約までの間にできることを教えてください。
+特に、丁寧な関係維持が得意なタイプの営業担当が、自然体でできるアプローチを重視してください。具体的な行動リストと、それぞれのタイミングも教えてください。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        「この学校が別の学校を紹介してくれるように働きかけるとしたら？」と続けると、紹介営業の仕組みも設計できます。
+      </div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card lv3">
+    <div class="q-header" onclick="toggle(this)">
+      <div class="q-num">11</div>
+      <div class="q-main">
+        <div class="q-theme">テーマ：自分の武器をつくる</div>
+        <div class="q-title">「井本さんに頼みたい」と言われる営業スタイルを作るには？</div>
+      </div>
+      <div class="q-toggle">▾</div>
+    </div>
+    <div class="q-body">
+      <div class="purpose">📌 なぜこれを聞くか：最後は「商品」ではなく「人」で選ばれる段階を目指します。自分らしい営業スタイルを言語化することが、長期的な強みになります。</div>
+      <div class="prompt-box">
+        <div class="p-label">💬 AIへのプロンプト例</div>
+        <div class="tool-badge badge-claude">Claude</div>
+        <p>「私は丁寧で誠実なタイプの営業です。派手さはないけれど、約束を守り、相手を安心させることが得意です。
+こういうタイプが教育機関向け営業で武器にできる強みと、それを活かした独自の営業スタイルを提案してください。
+また、この強みを相手に伝えるキャッチフレーズを3つ考えてください。」</p>
+      </div>
+      <div class="next-action">
+        <strong>🎯 深掘りのヒント</strong>
+        キャッチフレーズができたら「これを自己紹介トークに組み込むと？」と続けて、次の面談で使える一言を作ろう。
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- まとめ -->
+  <div class="how-to" style="border-left-color: var(--accent);">
+    <h2 style="color: #a07000;">🗺️ 全部終わったら、自分の「営業戦略マップ」を作ろう</h2>
+    <p>Q01〜Q11で出てきたアイデアを一枚にまとめると、自分だけの戦略マップができます。AIにこう頼んでみましょう：</p>
+    <div class="prompt-box" style="background:#fffbee; border-color:#f0d580; margin-top:16px;">
+      <div class="p-label" style="color:#a07000;">💬 戦略マップ作成プロンプト</div>
+      <p>「私がこれまでAIと一緒に考えてきた内容をもとに、教育機関向け営業の戦略を1枚にまとめてください。ターゲット・強み・年間スケジュール・アプローチ方法・差別化ポイントを含めてください。」</p>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>株式会社ソウルメイト｜井本さん AI壁打ち想定質問集</strong>
+  <p>AIは間違えることもあります。出てきた答えはヒントとして使い、最終判断は自分で。困ったらチャーさんに共有しよう。</p>
+  <p style="margin-top:8px; font-size:12px; opacity:0.5;">Powered by Gemini / ChatGPT / Claude</p>
+</div>
+
+<script>
+  function toggle(header) {
+    const card = header.closest('.q-card');
+    card.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
